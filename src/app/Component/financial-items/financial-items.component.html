@@ -1,0 +1,62 @@
+<style>
+    .control-section{
+        margin-top: 75px;
+    }
+  </style>
+<div class="control-section">
+
+    <div class="select-wrap">
+        <ejs-dropdownlist 
+        [dataSource]="jsonData" 
+        placeholder = 'Select category to filter' 
+        (change)="onChange($event)"></ejs-dropdownlist>
+    </div>
+
+    <ejs-grid 
+    #grid
+    id='AdvancedExport'
+    [dataSource]='data'
+    locale="en-US"
+    allowPaging="true"
+    allowFiltering="true"
+    [allowSorting]="true"
+    height='350'
+    [pageSettings]="intialPage" 
+    [sortSettings]="initialSort"
+    
+    [editSettings]="editSettings"
+    [toolbar]="toolbar"
+    (toolbarClick)='toolbarClick($event)'
+    [allowPdfExport]='true'
+    >
+        <e-columns>
+            <e-column field='y_seq' headerText='Year Sequence' width='150' isPrimaryKey='true'></e-column>
+            <e-column field='mdrm' headerText='MDRM' width='150'></e-column>
+            <e-column field='schedule' headerText='Schedule' width='150'></e-column>
+            <e-column field='line_item_code' headerText='Line Item Code' width='150'></e-column>
+            <e-column field='item_name' headerText='Item Name' width='250'></e-column>
+            <e-column field='q2_2023' headerText='Q2 2023' width='150'></e-column>
+            <e-column field='q3_2023' headerText='Q3 2023' width='150'></e-column>
+            <e-column field='abs_change_pct' headerText='Abs Change (%)' width='150'></e-column>
+            <e-column headerText='Manage Records' width='160' [commands]='commands'></e-column>
+        </e-columns>
+    </ejs-grid>
+</div>
+
+<div class="col-lg-3 property-section">
+    <div class="property-panel-section">
+        <div class="property-panel-header">Properties</div>
+        <div class="property-panel-content">
+            <table id="property" title="Properties" class="property-panel-table" style="width: 100%">
+                <tr>
+                    <div class="checkbox-control" style="padding-left: 5px;">
+                        <div class="row">
+                            <ejs-checkbox label="Enable Filterbar Operator" labelPosition='Before' [checked]="false"
+                            (change)="checkboxChange($event)"></ejs-checkbox>
+                        </div>
+                    </div>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
